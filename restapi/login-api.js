@@ -5,11 +5,18 @@ function apiLoginUser(login, form){
 
     }
 
-    axios.post('http://localhost:8080/login', login, {headers})
+    axios.post('http://localhost:8080/users/login', login, {headers})
             .then(res => {
                 form.reset()
                 showSuccessModal()
+                reDirect()
             })
+            .catch(err => console.log(err))
+}
+
+
+function reDirect(){
+    window.location.href = ""
 }
 
 function setUpLoginForm(){
@@ -27,3 +34,11 @@ function setUpLoginForm(){
 }
 
 setUpLoginForm()
+
+
+function showSuccessModal() {
+    const myModalEl = document.getElementById('successModal');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
+}
+
