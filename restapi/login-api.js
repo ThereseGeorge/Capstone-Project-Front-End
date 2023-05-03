@@ -7,7 +7,9 @@ function apiLoginUser(login, form){
 
     axios.post('http://localhost:8080/users/login', login, {headers})
             .then(res => {
+                console.log(res)
                 form.reset()
+                alert("Logged-in successfully")
                 showSuccessModal()
                 reDirect()
             })
@@ -19,19 +21,46 @@ function reDirect(){
     window.location.href = ""
 }
 
-function setUpLoginForm(){
-    const formLogin = document.getElementById('formLogin') 
-    formLogin.onsubmit = ev =>{
-        ev.preventDefault()
-        console.log(ev)
-        const formData = new FormData(ev.target)
-        const login = Object.fromEntries(formData.entries())
-        console.log(login)
-        apiLoginUser(login, formLogin)
+function setUpLoginForm() {
+    const formLogin = document.getElementById('formLogin');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const errorDiv = document.getElementById('errorDiv');
+  
+    formLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+  
+      if (!emailInput.validity.valid || !passwordInput.validity.valid) {
+        errorDiv.innerHTML = 'Please enter a valid email and password.';
+        window.alert("Please enter a valid email and password")
+        return;
+      }
+  
+      const formData = new FormData(e.target);
+      const login = Object.fromEntries(formData.entries());
+      apiLoginUser(login, formLogin);
+    });
+  
+    emailInput.addEventListener('input', () => {
+      if (emailInput.validity.valid) {
+        errorDiv.innerHTML = '';
+      } else {
+        errorDiv.innerHTML = 'Please enter a valid email.';
+        window.alert("Please enter a valid email.")
+      }
+    });
+  
+    passwordInput.addEventListener('input', () => {
+      if (passwordInput.validity.valid) {
+        errorDiv.innerHTML = '';
+      } else {
+        errorDiv.innerHTML = 'Please enter a valid password.';
+        window.alert("Please enter a valid email.")
         
-    }
+      }
+    });
+  }
 
-}
 
 setUpLoginForm()
 
