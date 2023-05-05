@@ -57,12 +57,12 @@ function setUpRegistrationForm() {
         }
         
         if (errors.length > 0) {
-            // Display errors to the user, e.g. by showing an alert or adding error messages to the form
+            
             console.log(errors);
             return;
         }
         
-        // If there are no errors, submit the form
+        
         const registration = { name, email, password };
         apiRegisterUser(registration, formRegistration);
     });
