@@ -40,7 +40,7 @@ function apiGetCourseDetails() {
 
 function apiUpdateExistingForm(course, form) {
     console.log(course.id)
-    axios.put('http://localhost:8080/course/', course)
+    axios.put(`http://localhost:8080/course/`, course)
         .then(httpResponse => httpResponse.data)
             // window.alert("Course updated successfully")
             // window.location.href= "../Faculty/list-course.html"

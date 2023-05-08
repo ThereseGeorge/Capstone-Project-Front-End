@@ -31,6 +31,7 @@ const readIdQueryParam = () => {
       const materialLink = document.createElement('a')
       materialLink.innerHTML = 'Material'
       materialLink.setAttribute('href', material)
+      const blankLine = document.createElement('br')
       const recordingLink = document.createElement('a')
       recordingLink.innerHTML = 'Recording'
       recordingLink.setAttribute('href', recording)
@@ -38,6 +39,7 @@ const readIdQueryParam = () => {
       card.appendChild(faculty)
       card.appendChild(dates)
       card.appendChild(materialLink)
+      card.appendChild(blankLine)
       card.appendChild(recordingLink)
       grid.appendChild(card)
     }
