@@ -1,12 +1,53 @@
+
+
 function setUpTable() {
     const table = document.getElementById('tableCourse')
+    const courseSearch = document.getElementById('courseSearch')
+
+
+    btnSearch.onclick = () => {
+
+        const searchTerm = courseSearch.value.trim()
+
+        if (searchTerm === '') {
+            alert('Please enter the course')
+            return
+        }
+
+        apiFetchAllCourseByName(table, document.getElementById('courseSearch').value)
+
+    }
+
     apiFetchAllCourses(table)
 
 }
 
+
+
+
+
+
+
 setUpTable()
 
 function populateActualData(table, courses) {
+
+
+    while (table.rows.length > 1) {
+        table.deleteRow(1)
+    }
+
+    if (courses.length === 0) {
+        alert('No course found')
+        const row = table.insertRow()
+        const cell = row.insertCell(0)
+        cell.colSpan = 7
+        cell.innerHTML = 'No courses found.'
+        return
+    }
+
+
+
     for (const course of courses) {
 
         const { id, courseName, facultyName, startDate, endDate, material, recording } = course
@@ -63,6 +104,26 @@ function deleteCourse(id) {
 }
 
 
+function apiFetchAllCourseByName(table, courseValue) {
+    const url = 'http://localhost:8080/course/name'
+    axios.get(url, {
+        params: {
+            courseName: courseValue
+        }
+    })
+        .then(res => {
+            const { data } = res
+            console.log(data)
+            const { sts, msg, bd } = data
+
+            // if (bd.length === 0) alert("No course found")
+
+            populateActualData(table, bd)
+
+
+        })
+        .catch(err => console.log(err))
+}
 
 
 

@@ -10,8 +10,8 @@ function setUpTable() {
         const searchTerm = courseSearch.value.trim()
 
         if (searchTerm === '') {
-        alert('Please enter the course')
-        return
+            alert('Please enter the course')
+            return
         }
 
         apiFetchAllCourseByName(table, document.getElementById('courseSearch').value)
@@ -40,7 +40,7 @@ setUpTable()
 //         cell.innerHTML = 'No courses found.'
 //         return
 //     }
-    
+
 //     for (const course of courses) {
 
 //         const { id, courseName, facultyName, startDate, endDate, material, recording } = course
@@ -58,39 +58,54 @@ setUpTable()
 
 //     }
 
-   
+
 // }
 
 
 function populateActualData(table, courses) {
+
+    // while (table.rows.length > 1) {
+    //     table.deleteRow(1)
+    // }
+
+    if (courses.length === 0) {
+        alert('No course found')
+        const row = table.insertRow()
+        const cell = row.insertCell(0)
+        cell.colSpan = 7
+        cell.innerHTML = 'No courses found.'
+        return
+    }
+
     const grid = document.createElement('div')
     grid.classList.add('grid')
     for (const course of courses) {
-      const { id, courseName, facultyName, startDate, endDate } = course
-      const card = document.createElement('div')
-      card.classList.add('card')
-      const header = document.createElement('h2')
-      header.innerHTML = courseName
-      const faculty = document.createElement('p')
-      faculty.innerHTML = `Faculty: ${facultyName}`
-      const dates = document.createElement('p')
-      dates.innerHTML = `Schedule:${startDate} to ${endDate}`
-      const updateButton = document.createElement('button')
-      updateButton.innerHTML = 'Get Started'
-      updateButton.classList.add('btn', 'btn-success')
-      updateButton.setAttribute('data-id', id)
-      updateButton.addEventListener('click', (event) => {
-        const id = event.target.getAttribute('data-id')
-        window.location.href = `./individual-course.html?id=${id}`
-      })
-      card.appendChild(header)
-      card.appendChild(faculty)
-      card.appendChild(dates)
-      card.appendChild(updateButton)
-      grid.appendChild(card)
+
+        const { id, courseName, facultyName, startDate, endDate } = course
+        const card = document.createElement('div')
+        card.classList.add('card')
+        const header = document.createElement('h2')
+        header.innerHTML = courseName
+        const faculty = document.createElement('p')
+        faculty.innerHTML = `Faculty: ${facultyName}`
+        const dates = document.createElement('p')
+        dates.innerHTML = `Schedule:${startDate} to ${endDate}`
+        const updateButton = document.createElement('button')
+        updateButton.innerHTML = 'Get Started'
+        updateButton.classList.add('btn', 'btn-success')
+        updateButton.setAttribute('data-id', id)
+        updateButton.addEventListener('click', (event) => {
+            const id = event.target.getAttribute('data-id')
+            window.location.href = `./individual-course.html?id=${id}`
+        })
+        card.appendChild(header)
+        card.appendChild(faculty)
+        card.appendChild(dates)
+        card.appendChild(updateButton)
+        grid.appendChild(card)
     }
     table.appendChild(grid)
-  }
+}
 
 
 
@@ -119,12 +134,12 @@ function apiFetchAllCourseByName(table, courseValue) {
             const { data } = res
             console.log(data)
             const { sts, msg, bd } = data
-           
+
             // if (bd.length === 0) alert("No course found")
-            
-            populateActualData(table, bd)  
-            
-            
+
+            populateActualData(table, bd)
+
+
         })
         .catch(err => console.log(err))
 }
