@@ -74,17 +74,7 @@ function populateActualData(table, courses) {
     }
 }
 
-function apiFetchAllCourse(table) {
-    axios.get('http://localhost:8080/invoice/')
-        .then(res => {
-            const { data } = res
-            console.log(data)
-            const { sts, msg, bd } = data
 
-            propulateActualData(table, bd)
-        })
-        .catch(err => console.log(err))
-}
 
 
 
@@ -127,30 +117,7 @@ function apiFetchAllCourseByName(table, courseValue) {
 
 
 
-// function showConfirmDeleteModal(id) {
-//     console.log('clicked ' + id)
-//     const myModalEl = document.getElementById('deleteModal');
-//     const modal = new bootstrap.Modal(myModalEl)
-//     modal.show()
 
-
-//     const btDl = document.getElementById('btDl')
-//     btDl.onclick = () => {
-//         apiCallDeleteCourse(id, modal)
-//     }
-// }
-
-// function showConfirmDeleteModal(id) {
-
-//     document.getElementById('confirm-delete-btn').addEventListener('click', function(){
-//         axios.delete('http://localhost:8080/course/${id}')
-//         .then(res => res.data) 
-//         .then( () =>  window.alert("Student deleted successfully"))
-//         .catch(console.log)
-//     })
-
-
-// }
 
 
 
@@ -166,10 +133,3 @@ function apiFetchAllCourses(table) {
         .catch(err => console.log(err))
 }
 
-// function apiCallDeleteCourse(id, modal){
-//     const url= 'http://localhost:8080/course/${id}'
-//     axios.delete(url)
-//         .then(res => res.data)
-//         .then( ({ sts, msg, bd }) =>  modal.hide() )
-//         .catch(console.log)
-// }
