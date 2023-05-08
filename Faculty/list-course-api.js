@@ -30,12 +30,10 @@ function populateActualData(table, courses) {
             <a class = "btn btn-primary" href='${updatePageUrl}'>Update</a>
             <a class="btn btn-danger" onclick='deleteCourse(${id})'>Delete</a>`
 
-
-
     }
 }
 
-function apiFetchAllInvoices(table) {
+function apiFetchAllCourse(table) {
     axios.get('http://localhost:8080/invoice/')
         .then(res => {
             const { data } = res
@@ -52,7 +50,7 @@ function apiFetchAllInvoices(table) {
 function deleteCourse(id) {
     console.log(id)
     //id = Number(id);
-    axios.delete('http://localhost:8080/course/${id}')
+    axios.delete(`http://localhost:8080/course/${id}`)
         .then(function (response) {
             console.log('Course deleted')
             window.alert("Course deleted successfully")

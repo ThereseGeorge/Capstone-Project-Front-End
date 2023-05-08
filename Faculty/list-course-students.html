@@ -11,25 +11,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <Link rel="stylesheet" href="../Faculty/list-faculty.css">
+    <Link rel="stylesheet" href="style2.css">
+    <Link rel="stylesheet" href="student.css">
+    
 </head>
 
 <body>
 
     <!-- create navigation bar ( header) -->
-
-    
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Courses</span> <span class="icon-bar"></span> <span
-                        class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="sr-only">Courses</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../Faculty/faculty-dashboard.html">Courses</a>
+                <a class="navbar-brand" href="../Faculty/list-course-students.html">Courses</a>
                 <a class="navbar-brand" href="../Homepage/home.html">Log Out</a>
-                
             </div>
         </div>
     </nav>
@@ -37,41 +36,71 @@
 
     <br>
     <br>
-    <div class="container">
-        <div class="row">
-            <h1> List of Courses </h1>
-        </div>
+    <br>
+    <br>
 
-        <div class="row">
-            <div class="col-lg-3">
-                <a href="./create-course.html" class="btn btn-primary btn-sm mb-3"> Add Course</a>
-
+    <div class="row" >
+        <div class="col-xs-6">
+            <div class="input-group">
+                <input type="text" class="form-control" id="courseSearch" placeholder="Search course here"
+                    name="course">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="btnSearch" type="button">Search</button>
+                </span>
             </div>
         </div>
+    </div>
 
-        <br>
-        <table class="table table-striped table-bordered" id="tableCourse">
-            <thead >
-                <tr class="th">
-                    <th >Course Id</th>
-                    <th> Course Name</th>
-                    <th> Faculty Name </th>
-                    <th> Start Date </th>
-                    <th> End Date</th>
-                    <th> Materials </th>
-                    <th> Recordings</th>
-                    <th> Actions </th>
-            </thead>
 
-            <tbody>
-            </tbody>
 
-        </table>
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;"> List of Courses </h1>
+        </div>
+
+    
+   
+    <!-- <table class="table table-striped table-bordered " id="tableCourse">
+        <thead class="thead-dark">
+            <tr>
+                <th>Course Id</th>
+                <th id="courseName"> Course Name</th>
+                <th> Faculty Name </th>
+                <th> Start Date </th>
+                <th> End Date</th>
+                <th> Materials </th>
+                <th> Recordings</th>
+
+        </thead>
+
+
+        <tbody>
+        </tbody>
+
+    </table>
+     -->
+
+     <main>
+        <div class="container">
+          <div class="card-grid">
+              <div class="card">
+                  <table> 
+                      <tbody id="tableCourse">
+                          
+                      </tbody>
+                  </table>
+                  <br> <br>
+                       
+              </div>
+
+          </div>
+      </div>
+   </main>
 
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-label">
+    <!-- <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-label">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,9 +118,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <script src="./list-course-api.js"></script>
+    <script src="./list-course-student-api.js"></script>
 </body>
 
 </html>

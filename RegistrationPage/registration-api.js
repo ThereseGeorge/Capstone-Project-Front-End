@@ -67,8 +67,8 @@ function apiRegisterUser(registration, form) {
 }
 
 
-function showSuccessModal() {
-    const myModalEl = document.getElementById('successModal');
-    const modal = new bootstrap.Modal(myModalEl)
-    modal.show()
-}
+// function showSuccessModal() {
+//     const myModalEl = document.getElementById('successModal');
+//     const modal = new bootstrap.Modal(myModalEl)
+//     modal.show()
+// }

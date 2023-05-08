@@ -50,3 +50,62 @@ function apiCallDeleteStudent(id, modal){
         .then( ({ sts, msg, bd }) =>  modal.hide() )
         .catch(console.log)
 }
+
+
+
+// function setUpTable() {
+//     const table = document.getElementById('tableCourse')
+//     apiFetchAllCourses(table)
+
+// }
+
+// setUpTable()
+
+// function populateActualData(table, courses) {
+//     for (const course of courses) {
+
+//         const { id, courseName, facultyName, startDate, endDate, material, recording } = course
+
+//         const row = table.insertRow()
+
+//         row.insertCell(0).innerHTML = id
+//         row.insertCell(1).innerHTML = courseName
+//         row.insertCell(2).innerHTML = facultyName
+//         row.insertCell(3).innerHTML = startDate
+//         row.insertCell(4).innerHTML = endDate
+//         row.insertCell(5).innerHTML = material
+//         row.insertCell(6).innerHTML = recording
+        
+
+
+//     }
+// }
+
+// function apiFetchAllCourses(table) {
+//     axios.get('http://localhost:8080/course/')
+//         .then(res => {
+//             const { data } = res
+//             console.log(data)
+//             const { sts, msg, bd } = data
+
+//             populateActualData(table, bd)
+//         })
+//         .catch(err => console.log(err))
+// }
+
+
+
+// function deleteCourse(id) {
+//     console.log(id)
+//     //id = Number(id);
+//     axios.delete('http://localhost:8080/course/${id}')
+//         .then(function (response) {
+//             console.log('Course deleted')
+//             window.alert("Course deleted successfully")
+
+//         })
+//         .catch(function (error) {
+//             // Handle error response
+//             console.log(error)
+//         })
+// }
