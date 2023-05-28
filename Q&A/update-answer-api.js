@@ -20,15 +20,16 @@ console.log(readIdQueryParam())
 function apiGetAnswerDetails() {
     const id = readIdQueryParam()
 
-    axios.get(`http://localhost:8080/questions-answers/${id}`)
+    axios.get(`http://localhost:8080/questions/${id}`)
         .then(httpReponse => httpReponse.data)
         .then(data => populateForm(document.getElementById('formAnswer'), data.bd))
         .catch(err => console.log(err))
 }
 
 function apiUpdateExistingForm(answers, form) {
+    const id = readIdQueryParam()
     console.log(answers.id)
-    axios.put(`http://localhost:8080/questions-answers/`, answers)
+    axios.put(`http://localhost:8080/questions/answer/${id}`, answers)
         .then(httpResponse => httpResponse.data)
             // window.alert("Course updated successfully")
             // window.location.href= "../Faculty/list-course.html"
@@ -44,26 +45,46 @@ function apiUpdateExistingForm(answers, form) {
         .catch(err => console.log(err))
 }
 
-function populateForm(form, data) {
-    console.log(data)
-    const { elements } = form; 
-    console.log(elements)
+// function populateForm(form, data) {
+//     console.log(data)
+//     const { elements } = form; 
 
-    const entries = Object.entries(data) 
-    console.log(entries)
+//     console.log(elements)
 
-    for (const entry of entries) {
+//     const entries = Object.entries(data) 
+//     console.log(entries)
+
+//     for (const entry of entries) {
         
-        console.log(entry)
+//         console.log(entry)
         
 
-        const [key, value] = entry
-        const inputField = elements.namedItem(key)
-        console.log(inputField)
-        if (inputField) inputField.value = value
+//         const [key, value] = entry
+//         const inputField = elements.namedItem(key)
+//         console.log(inputField)
+//         if (inputField) inputField.value = value
+//     }
+
+// }
+
+
+function populateForm(form, data, prefix = '') {
+    const { elements } = form;
+
+    for (const [key, value] of Object.entries(data)) {
+        const inputField = elements.namedItem(prefix + key);
+
+        if (inputField) {
+            if (typeof value === 'object' && !Array.isArray(value)) {
+                populateForm(form, value, `${prefix + key}.`);
+            } else {
+                inputField.value = value;
+            }
+        }
     }
-
 }
+
+
 
 function setupForm() {
     

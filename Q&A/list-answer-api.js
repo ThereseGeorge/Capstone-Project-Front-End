@@ -26,7 +26,7 @@ function populateActualData(table, answers) {
         const updatePageUrl = `./update-answer.html?id=${id}`
 
         // './update-course.html?id=${id}'
-        const viewPageUrl = `./view-answer.html?id=${id}`
+        //const viewPageUrl = `./view-answer.html?id=${id}`
 
         const row = table.insertRow()
 
@@ -36,7 +36,6 @@ function populateActualData(table, answers) {
         row.insertCell(3).innerHTML = answer;
         row.insertCell(4).innerHTML = `
             <a class = "btn btn-primary" href='${addPageUrl}'>Add Answer</a>
-            <a class = "btn btn-primary" href='${viewPageUrl}'>View</a>
             <a class = "btn btn-primary" href='${updatePageUrl}'>Update</a>
             <a class="btn btn-danger" onclick='deleteAnswer(${id})'>Delete</a>`
 
