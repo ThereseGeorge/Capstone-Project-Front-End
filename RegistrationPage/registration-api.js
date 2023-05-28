@@ -4,12 +4,18 @@ const validateForm=({role,name,email,password}) =>{
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
+
+    function isValidName(name) {
+        const regex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+        return regex.test(name);
+    }
     
-    const roles=document.getElementById('roles')
+    const dropDown=document.querySelector('#role')
     
-    if(!roles.value) return {msg:'Please select the role', sts: false}
+    if(dropDown.value ==='') return {msg:'Please select the role', sts: false}
+    if(!isValidName(name)) return {msg:'Please enter a valid name', sts: false}
     if(name.length < 3) return {msg:'Please enter a valid name', sts: false}
-    if(isvalidEmail()) return {msg:'Please enter a valid email ', sts: false}
+    if(!isvalidEmail(email)) return {msg:'Please enter a valid email ', sts: false}
     if(password.length<=6 ) return {msg:'Please enter a valid password ', sts: false}
     if (!isvalidEmail || password.length<=6 ) return {msg:'Please enter a valid email and password', sts: false}
     
